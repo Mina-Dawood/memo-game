@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  /* background-image: url('/logo.jpeg');
+  background-size: cover; */
+}
+
+.game-board {
+  display: flex;
+  gap: 15px; /* Increase gap between cards */
+  padding: 20px; /* Add padding around the board */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: calc(10% - 15px); /* Adjust card size */
+  height: 100px; /* Adjust card size */
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative; /* Required for flipping */
+  transform-style: preserve-3d;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+.front-img {
+  transform: rotateY(180deg);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+  border: 2px solid #63130e;
+  width: calc(10% - 19px); /* Adjust card size */
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card .front {
+  background-color: #fff;
+  transform: rotateY(180deg);
+}
+
+.card .back {
+  background-color: #ccc;
+}
+
+h1 {
+  color: #e1c08f;
+  margin: 1rem;
+}
+
+button {
+  margin: 0 10px;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content h2 {
+  color: #333;
+}
+
+.popup-content button {
+  margin-top: 10px;
+}
+
+.popup-content p {
+  color: #380c09;
+}
+
+.last-matched-card {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #63130e;
+}

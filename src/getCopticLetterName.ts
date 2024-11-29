@@ -1,0 +1,38 @@
+export const getCopticLetterName = (index: number) => {
+  const copticLetterNames = [
+    "Alpha",
+    "Vita",
+    "Ghamma",
+    "Delta",
+    "Ei",
+    "So",
+    "Zeta",
+    "Eeta",
+    "Theta",
+    "Yota",
+    "Kappa",
+    "Lola",
+    "Mey",
+    "Ney",
+    "Ksi",
+    "O",
+    "Pee",
+    "Ro",
+    "Sima",
+    "Tav",
+    "Epsi",
+    "Fee",
+    "Key",
+    "Psi",
+    "Oou",
+    "Shy",
+    "Fai",
+    "Khi",
+    "Horee",
+    "Jenja",
+    "Cheema",
+    "Tee",
+  ];
+
+  return copticLetterNames[index];
+};
