@@ -3,6 +3,7 @@ import Card from "./Card";
 import { CardType } from "../types/CardType";
 import { getCopticLetterName } from "../utils/getCopticLetterName";
 import { speakLetter } from "../utils/speackLetter";
+import { getCopticWord } from "../utils/getCopticWord";
 
 const GameBoard: React.FC = () => {
   const [cards, setCards] = useState<CardType[]>([]);
@@ -44,6 +45,7 @@ const GameBoard: React.FC = () => {
       isFlipped: false,
       isMatched: false,
       letterName: getCopticLetterName(i),
+      word: getCopticWord(i),
     }));
 
     const duplicatedCards = initialCards.flatMap((card) => [
@@ -146,7 +148,7 @@ const GameBoard: React.FC = () => {
       {/* top left styled text */}
       {lastMatchedCard && (
         <div className="last-matched-card">
-          <p>{lastMatchedCard.letterName}</p>
+          <p>{`${lastMatchedCard.letterName} - ${lastMatchedCard.word.coptic} ${lastMatchedCard.word.pronunciation}`}</p>
         </div>
       )}
       <div className="game-board">

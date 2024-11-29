@@ -5,4 +5,8 @@ export type CardType = {
   isFlipped: boolean;
   isMatched: boolean;
   letterName: string;
+  word: {
+    pronunciation: string;
+    coptic: string;
+  };
 };
