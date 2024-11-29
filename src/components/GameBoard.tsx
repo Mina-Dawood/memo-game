@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Card from "./Card";
 import { CardType } from "../types/CardType";
-import { getCopticLetterName } from "../getCopticLetterName";
+import { getCopticLetterName } from "../utils/getCopticLetterName";
+import { speakLetter } from "../utils/speackLetter";
 
 const GameBoard: React.FC = () => {
   const [cards, setCards] = useState<CardType[]>([]);
@@ -73,6 +74,9 @@ const GameBoard: React.FC = () => {
 
     setLastMatchedCard(null);
 
+    const card = cards.find((card) => card.instanceId === instanceId)!;
+    speakLetter(card.letterName);
+
     // Flip the clicked card
     const updatedCards = cards.map((card) =>
       card.instanceId === instanceId ? { ...card, isFlipped: true } : card
@@ -140,15 +144,11 @@ const GameBoard: React.FC = () => {
   return (
     <div>
       {/* top left styled text */}
-      {
-        lastMatchedCard && (
-          <div className="last-matched-card">
-            <p>
-              {lastMatchedCard.letterName}
-            </p>
-          </div>
-        )
-      }
+      {lastMatchedCard && (
+        <div className="last-matched-card">
+          <p>{lastMatchedCard.letterName}</p>
+        </div>
+      )}
       <div className="game-board">
         {cards.map((card, index) => (
           <Card
