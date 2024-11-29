@@ -29,9 +29,9 @@ export const getCopticWord = (index: number) => {
     { coptic: "ϥⲉⲓⲥ", pronunciation: "feis (father)" }, // Fai
     { coptic: "ϧⲁⲛⲉⲩⲟⲥ", pronunciation: "khaneuos (cross)" }, // Ganga
     { coptic: "ϩⲁⲙⲟⲟⲩ", pronunciation: "hamou (sea)" }, // Hori
-    { coptic: "ϫⲓⲙⲙⲁ", pronunciation: "jimme (time)" }, // Cheema
-    { coptic: "ϯⲁⲓⲟⲥ", pronunciation: "tiai-os (saint)" }, // Di
-    { coptic: "ⲥⲁⲛⲕⲩⲥ", pronunciation: "sankus (joy)" }, // Janja
+    { coptic: "ϫⲓⲙⲙⲁ", pronunciation: "jimme (time)" }, // Janja
+    { coptic: "ϭⲓⲛⲓ", pronunciation: "chini (ring)" }, // Cheema
+    { coptic: "ϯⲁⲓⲟⲥ", pronunciation: "tiai-os (saint)" }, // Tee
   ];
 
   if (index < 0 || index >= copticWords.length) {
