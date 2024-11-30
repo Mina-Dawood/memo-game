@@ -135,3 +135,14 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
+.flip-me-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}

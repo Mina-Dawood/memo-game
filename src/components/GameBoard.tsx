@@ -166,8 +166,22 @@ const GameBoard: React.FC = () => {
     initializeCards();
   };
 
+  const flipCards = () => {
+    setTimeout(() => {
+      setCards(cards.map((card) => ({ ...card, isFlipped: true })));
+      flipSound.play();
+    }, 0);
+    setTimeout(() => {
+      setCards(cards.map((card) => ({ ...card, isFlipped: false })));
+      flipSound.play();
+    }, 2000);
+  };
+
   return (
     <div>
+      <div className="flip-me-btn">
+        <button onClick={flipCards}>Help Me</button>
+      </div>
       {/* top left styled text */}
       {lastMatchedCard && (
         <div className="last-matched-card">
