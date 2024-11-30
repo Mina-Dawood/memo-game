@@ -11,6 +11,7 @@ const GameBoard: React.FC = () => {
   const [isLocked, setIsLocked] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [showName, setShowName] = useState(false);
   const [lastMatchedCard, setLastMatchedCard] = useState<CardType | null>(null);
   const [numberOfCards, setNumberOfCards] = useState<number>();
 
@@ -38,19 +39,37 @@ const GameBoard: React.FC = () => {
     }
   }, [gameStarted]);
 
+  const getRandomDistinctIndexes = (count: number, max: number) => {
+    const indexes: number[] = [];
+
+    while (indexes.length < count) {
+      const randomIndex = Math.floor(Math.random() * max);
+
+      if (!indexes.includes(randomIndex)) {
+        indexes.push(randomIndex);
+      }
+    }
+
+    return indexes;
+  };
+
   const initializeCards = () => {
-    const initialCards = Array.from(
-      { length: numberOfCards || 32 },
-      (_, i) => ({
-        id: i + 1, // Unique identifier for the card type
-        instanceId: `card-${i + 1}-a`, // Unique identifier for the first instance
-        value: `/coptic_alphabet/${i + 1}.svg`,
+    const count = numberOfCards || 32;
+    const randomIndexes = getRandomDistinctIndexes(count, 32);
+
+    const initialCards = Array.from({ length: count }, (_, i) => {
+      const randomIndex = randomIndexes[i];
+
+      return {
+        id: randomIndex + 1, // Unique identifier for the card type
+        instanceId: `card-${randomIndex + 1}-a`, // Unique identifier for the first instance
+        value: `/coptic_alphabet/${randomIndex + 1}.svg`,
         isFlipped: false,
         isMatched: false,
-        letterName: getCopticLetterName(i),
-        word: getCopticWord(i),
-      })
-    );
+        letterName: getCopticLetterName(randomIndex),
+        word: getCopticWord(randomIndex),
+      };
+    });
 
     const duplicatedCards = initialCards.flatMap((card) => [
       { ...card, instanceId: `${card.instanceId}-1` }, // First instance
@@ -152,7 +171,13 @@ const GameBoard: React.FC = () => {
       {/* top left styled text */}
       {lastMatchedCard && (
         <div className="last-matched-card">
-          <p>{`${lastMatchedCard.letterName} - ${lastMatchedCard.word.coptic} ${lastMatchedCard.word.pronunciation}`}</p>
+          {!showName ? (
+            <a
+              onClick={() => setShowName(true)}
+            >{`${lastMatchedCard.letterName} - ${lastMatchedCard.word.coptic}`}</a>
+          ) : (
+            <a>{`${lastMatchedCard.letterName} - ${lastMatchedCard.word.coptic} ${lastMatchedCard.word.pronunciation}`}</a>
+          )}
         </div>
       )}
       <div className="game-board">

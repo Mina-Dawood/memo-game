@@ -129,3 +129,9 @@ input {
   width: 100%;
   text-align: center;
 }
+
+a {
+  color: #63130e;
+  text-decoration: none;
+  cursor: pointer;
+}
