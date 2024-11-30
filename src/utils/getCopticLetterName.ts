@@ -15,7 +15,7 @@ export const getCopticLetterName = (index: number) => {
     "Mey",
     "Ney",
     "Exi",
-    "O",
+    "Oo",
     "Pee",
     "Ro",
     "Sima",

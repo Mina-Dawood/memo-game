@@ -12,6 +12,7 @@ const GameBoard: React.FC = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [lastMatchedCard, setLastMatchedCard] = useState<CardType | null>(null);
+  const [numberOfCards, setNumberOfCards] = useState<number>();
 
   const flipSound = new Audio("/sounds/flip.mp3");
   const matchSound = new Audio("/sounds/match.mp3");
@@ -38,15 +39,18 @@ const GameBoard: React.FC = () => {
   }, [gameStarted]);
 
   const initializeCards = () => {
-    const initialCards = Array.from({ length: 32 }, (_, i) => ({
-      id: i + 1, // Unique identifier for the card type
-      instanceId: `card-${i + 1}-a`, // Unique identifier for the first instance
-      value: `/coptic_alphabet/${i + 1}.svg`,
-      isFlipped: false,
-      isMatched: false,
-      letterName: getCopticLetterName(i),
-      word: getCopticWord(i),
-    }));
+    const initialCards = Array.from(
+      { length: numberOfCards || 32 },
+      (_, i) => ({
+        id: i + 1, // Unique identifier for the card type
+        instanceId: `card-${i + 1}-a`, // Unique identifier for the first instance
+        value: `/coptic_alphabet/${i + 1}.svg`,
+        isFlipped: false,
+        isMatched: false,
+        letterName: getCopticLetterName(i),
+        word: getCopticWord(i),
+      })
+    );
 
     const duplicatedCards = initialCards.flatMap((card) => [
       { ...card, instanceId: `${card.instanceId}-1` }, // First instance
@@ -178,6 +182,13 @@ const GameBoard: React.FC = () => {
                 <>
                   <h2>Memory Game</h2>
                   <p>Click the button to start the game.</p>
+                  <div>
+                    <input
+                      type="text"
+                      onChange={(e) => setNumberOfCards(+e.target.value / 2)}
+                      placeholder="Enter the number of cards"
+                    />
+                  </div>
                   <button onClick={startGame}>Start Game</button>
                 </>
               )}

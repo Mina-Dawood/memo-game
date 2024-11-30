@@ -119,3 +119,13 @@ button {
   font-size: 1.5rem;
   color: #63130e;
 }
+
+input {
+  background-color: #fff;
+  border-radius: 8px;
+  height: 34px;
+  border: 1px solid black;
+  color: #63130e;
+  width: 100%;
+  text-align: center;
+}
